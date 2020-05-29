@@ -25,6 +25,16 @@ async function getRandomUser() {
     addData(newUser);
 }
 
+// Double money 
+// ... is a spread operator that allows js functions to treat an array as separate arguments
+// https://medium.com/coding-at-dawn/how-to-use-the-spread-operator-in-javascript-b9e4a8b06fab
+function doubleMoney() {
+    data = data.map((user) => {
+        return { ...user, money: user.money * 2 }
+    });
+    updateDOM();
+}
+
 function addData(obj) {
     data.push(obj);
 
@@ -48,3 +58,7 @@ providedData.forEach(item => {
 function formatMoney(number) {
     return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   }
+
+  // Event listeners
+  addUserBtn.addEventListener('click', getRandomUser);
+  doubleBtn.addEventListener('click', doubleMoney);
